@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import Explore from './pages/Explore.jsx';
 import Home from './pages/Home.jsx';
 import Host from './pages/Host.jsx';
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <>
       <DocumentTitle />
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

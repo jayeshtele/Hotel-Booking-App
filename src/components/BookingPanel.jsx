@@ -1,9 +1,10 @@
 import { addDays, format, isAfter, parseISO } from 'date-fns';
-import { BadgeCheck, CalendarDays, CreditCard, ShieldCheck, Users } from 'lucide-react';
+import { BadgeCheck, CreditCard, ShieldCheck, Users } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addBooking } from '../features/booking/bookingSlice.js';
+import DateInput from './DateInput.jsx';
 import { useGetLiveRatesQuery } from '../services/stayApi.js';
 import { formatCurrency, getNightCount } from '../utils/formatters.js';
 
@@ -109,32 +110,18 @@ export default function BookingPanel({ property }) {
       </div>
 
       <div className="mt-5 grid gap-3">
-        <label className="grid gap-2">
-          <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase text-ink-500">
-            <CalendarDays className="h-4 w-4 text-ocean-600" />
-            Check in
-          </span>
-          <input
-            className="control"
-            type="date"
-            min={todayIso()}
-            value={form.checkIn}
-            onChange={(event) => updateField('checkIn', event.target.value)}
-          />
-        </label>
-        <label className="grid gap-2">
-          <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase text-ink-500">
-            <CalendarDays className="h-4 w-4 text-ocean-600" />
-            Check out
-          </span>
-          <input
-            className="control"
-            type="date"
-            min={plusDaysIso(form.checkIn, 1)}
-            value={form.checkOut}
-            onChange={(event) => updateField('checkOut', event.target.value)}
-          />
-        </label>
+        <DateInput
+          label="Check in"
+          min={todayIso()}
+          value={form.checkIn}
+          onChange={(value) => updateField('checkIn', value)}
+        />
+        <DateInput
+          label="Check out"
+          min={plusDaysIso(form.checkIn, 1)}
+          value={form.checkOut}
+          onChange={(value) => updateField('checkOut', value)}
+        />
         <label className="grid gap-2">
           <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase text-ink-500">
             <Users className="h-4 w-4 text-ocean-600" />

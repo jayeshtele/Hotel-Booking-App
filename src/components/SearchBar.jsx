@@ -1,7 +1,8 @@
-import { CalendarDays, MapPin, Search, Users } from 'lucide-react';
+import { MapPin, Search, Users } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
+import DateInput from './DateInput.jsx';
 import { setSearchField } from '../features/search/searchSlice.js';
 
 export default function SearchBar({ compact = false }) {
@@ -46,31 +47,18 @@ export default function SearchBar({ compact = false }) {
         </span>
       </label>
 
-      <label className="group flex items-center gap-3 rounded-[8px] border border-ink-200 bg-ink-50 px-4 py-3 transition focus-within:border-ocean-500 focus-within:ring-4 focus-within:ring-ocean-100">
-        <CalendarDays className="h-5 w-5 shrink-0 text-ocean-600" />
-        <span className="grid flex-1 gap-1">
-          <span className="text-xs font-extrabold uppercase text-ink-500">Check in</span>
-          <input
-            type="date"
-            value={filters.checkIn}
-            onChange={(event) => updateField('checkIn', event.target.value)}
-            className="min-w-0 border-0 bg-transparent p-0 text-sm font-bold text-ink-900 outline-none"
-          />
-        </span>
-      </label>
+      <DateInput
+        label="Check in"
+        value={filters.checkIn}
+        onChange={(value) => updateField('checkIn', value)}
+      />
 
-      <label className="group flex items-center gap-3 rounded-[8px] border border-ink-200 bg-ink-50 px-4 py-3 transition focus-within:border-ocean-500 focus-within:ring-4 focus-within:ring-ocean-100">
-        <CalendarDays className="h-5 w-5 shrink-0 text-ocean-600" />
-        <span className="grid flex-1 gap-1">
-          <span className="text-xs font-extrabold uppercase text-ink-500">Check out</span>
-          <input
-            type="date"
-            value={filters.checkOut}
-            onChange={(event) => updateField('checkOut', event.target.value)}
-            className="min-w-0 border-0 bg-transparent p-0 text-sm font-bold text-ink-900 outline-none"
-          />
-        </span>
-      </label>
+      <DateInput
+        label="Check out"
+        value={filters.checkOut}
+        min={filters.checkIn}
+        onChange={(value) => updateField('checkOut', value)}
+      />
 
       <label className="group flex items-center gap-3 rounded-[8px] border border-ink-200 bg-ink-50 px-4 py-3 transition focus-within:border-ocean-500 focus-within:ring-4 focus-within:ring-ocean-100">
         <Users className="h-5 w-5 shrink-0 text-marigold-600" />

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Building2, CalendarDays, Heart, Hotel, Menu, Search, X } from 'lucide-react';
+import { Building2, CalendarDays, Heart, Menu, Search, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+import LogoMark from './LogoMark.jsx';
 
 const navItems = [
   { to: '/explore', label: 'Explore', icon: Search },
@@ -40,9 +41,7 @@ export default function Header() {
       <div className="section-shell">
         <div className="flex h-20 items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-            <span className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-ocean-600 text-white shadow-glow">
-              <Hotel className="h-6 w-6" />
-            </span>
+            <LogoMark />
             <span>
               <span className="block font-display text-2xl font-bold leading-none text-ink-900">
                 StayNest
