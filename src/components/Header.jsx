@@ -11,13 +11,20 @@ const navItems = [
   { to: '/host', label: 'Host', icon: Building2 },
 ];
 
+function scrollPageTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+}
+
 function NavItem({ item, onClick }) {
   const Icon = item.icon;
 
   return (
     <NavLink
       to={item.to}
-      onClick={onClick}
+      onClick={() => {
+        scrollPageTop();
+        onClick?.();
+      }}
       className={({ isActive }) =>
         clsx(
           'inline-flex items-center gap-2 rounded-[8px] px-3 py-2 text-sm font-bold transition',
@@ -40,7 +47,14 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-ink-200 bg-black/90 backdrop-blur">
       <div className="section-shell">
         <div className="flex h-20 items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+            onClick={() => {
+              scrollPageTop();
+              setIsOpen(false);
+            }}
+          >
             <LogoMark />
             <span>
               <span className="block font-display text-2xl font-bold leading-none text-ink-900">
@@ -56,7 +70,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <Link to="/explore" className="primary-button hidden lg:inline-flex">
+          <Link to="/explore" className="primary-button hidden lg:inline-flex" onClick={scrollPageTop}>
             <Search className="h-4 w-4" />
             Start booking
           </Link>

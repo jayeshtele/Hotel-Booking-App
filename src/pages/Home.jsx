@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   BadgeCheck,
-  CloudSun,
   Globe2,
   MapPinned,
   ShieldCheck,
@@ -14,11 +13,8 @@ import EmptyState from '../components/EmptyState.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import PropertyCard from '../components/PropertyCard.jsx';
 import SearchBar from '../components/SearchBar.jsx';
-import {
-  useGetLiveRatesQuery,
-  useGetPropertiesQuery,
-  useGetWeatherQuery,
-} from '../services/stayApi.js';
+import WeatherSignal from '../components/WeatherSignal.jsx';
+import { useGetLiveRatesQuery, useGetPropertiesQuery } from '../services/stayApi.js';
 
 const categoryTiles = [
   {
@@ -77,7 +73,6 @@ export default function Home() {
     maxPrice: 900,
   });
   const { data: rates } = useGetLiveRatesQuery();
-  const { data: weather } = useGetWeatherQuery({ lat: 15.518, lon: 73.762 });
   const featured = properties.slice(0, 30);
 
   return (
@@ -180,22 +175,14 @@ export default function Home() {
               the project stays secure as a frontend-only build.
             </p>
             <div className="mt-6 grid gap-3">
-              <div className="rounded-[8px] bg-white/10 p-4 backdrop-blur">
-                <p className="inline-flex items-center gap-2 text-sm font-bold text-white">
-                  <CloudSun className="h-5 w-5 text-marigold-400" />
-                  Goa right now
-                </p>
-                <p className="mt-2 text-2xl font-extrabold">
-                  {weather ? `${weather.temperature}C, ${weather.label}` : 'Loading weather'}
-                </p>
-              </div>
+              <WeatherSignal useCurrentLocation label="Your location" />
               <div className="rounded-[8px] bg-white/10 p-4 backdrop-blur">
                 <p className="inline-flex items-center gap-2 text-sm font-bold text-white">
                   <WalletCards className="h-5 w-5 text-coral-300" />
                   Currency feed
                 </p>
                 <p className="mt-2 text-2xl font-extrabold">
-                  $1 = Rs {rates?.rates?.INR?.toFixed(2) ?? '...'}
+                  $1 = ₹{rates?.rates?.INR?.toFixed(2) ?? '...'}
                 </p>
               </div>
             </div>

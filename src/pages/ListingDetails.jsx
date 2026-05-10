@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Sparkles,
   Star,
-  ThermometerSun,
   Users,
   Waves,
   Wifi,
@@ -20,11 +19,8 @@ import BookingPanel from '../components/BookingPanel.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import PropertyCard from '../components/PropertyCard.jsx';
-import {
-  useGetPropertiesQuery,
-  useGetPropertyQuery,
-  useGetWeatherQuery,
-} from '../services/stayApi.js';
+import WeatherSignal from '../components/WeatherSignal.jsx';
+import { useGetPropertiesQuery, useGetPropertyQuery } from '../services/stayApi.js';
 import { formatRating } from '../utils/formatters.js';
 
 function AmenityIcon({ amenity }) {
@@ -49,7 +45,6 @@ function AmenityIcon({ amenity }) {
 export default function ListingDetails() {
   const { slug } = useParams();
   const { data: property, isLoading, isError } = useGetPropertyQuery(slug);
-  const { data: weather } = useGetWeatherQuery(property?.coordinates, { skip: !property });
   const { data: nearby = [] } = useGetPropertiesQuery(
     { destination: property?.city ?? '', maxPrice: 900 },
     { skip: !property },
@@ -184,17 +179,7 @@ export default function ListingDetails() {
                   Essentials and comforts for this stay
                 </p>
               </div>
-              <div className="rounded-[8px] bg-black px-4 py-3 text-white ring-1 ring-ink-200">
-                <p className="inline-flex items-center gap-2 text-sm font-bold">
-                  <ThermometerSun className="h-5 w-5 text-marigold-400" />
-                  {weather ? `${weather.temperature}C - ${weather.label}` : 'Live weather'}
-                </p>
-                {weather ? (
-                  <p className="mt-1 text-xs font-semibold text-white/60">
-                    Wind {weather.windSpeed} km/h
-                  </p>
-                ) : null}
-              </div>
+              <WeatherSignal coordinates={property.coordinates} label={property.city} />
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">

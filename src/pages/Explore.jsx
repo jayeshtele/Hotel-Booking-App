@@ -7,6 +7,7 @@ import FilterBar from '../components/FilterBar.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import PropertyCard from '../components/PropertyCard.jsx';
 import SearchBar from '../components/SearchBar.jsx';
+import WeatherSignal from '../components/WeatherSignal.jsx';
 import { setSearchField } from '../features/search/searchSlice.js';
 import { useGetPropertiesQuery } from '../services/stayApi.js';
 
@@ -22,6 +23,7 @@ export default function Explore() {
     isError,
     refetch,
   } = useGetPropertiesQuery(filters);
+  const selectedWeatherStay = filters.destination ? properties[0] : null;
 
   useEffect(() => {
     if (destinationParam && destinationParam !== filters.destination) {
@@ -44,12 +46,24 @@ export default function Explore() {
         </div>
         <button type="button" className="secondary-button self-start" onClick={refetch}>
           <RefreshCcw className="h-4 w-4" />
-          Refresh API
+          Refresh
         </button>
       </div>
 
       <div className="mt-8">
         <SearchBar compact />
+      </div>
+
+      <div className="mt-6 grid gap-4 rounded-[8px] bg-black p-4 text-white ring-1 ring-ink-200 md:grid-cols-[1fr_auto] md:items-center">
+        <WeatherSignal
+          coordinates={selectedWeatherStay?.coordinates}
+          label={selectedWeatherStay?.city ?? filters.destination}
+          useCurrentLocation={!filters.destination}
+        />
+        <p className="text-sm font-semibold leading-6 text-white/60 md:max-w-sm">
+          Weather follows the searched destination. With no destination selected, StayNest
+          asks the browser for current-location weather.
+        </p>
       </div>
 
       <div className="mt-6">

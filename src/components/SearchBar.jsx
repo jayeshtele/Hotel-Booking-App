@@ -21,6 +21,7 @@ export default function SearchBar({ compact = false }) {
       params.set('destination', filters.destination);
     }
     navigate(`/explore${params.toString() ? `?${params.toString()}` : ''}`);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
 
   return (

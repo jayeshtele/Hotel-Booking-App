@@ -1,7 +1,7 @@
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 export function formatCurrency(amount, currency = 'USD') {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat(currency === 'INR' ? 'en-IN' : 'en-US', {
     style: 'currency',
     currency,
     maximumFractionDigits: 0,

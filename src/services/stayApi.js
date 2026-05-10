@@ -1,5 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import staysUrl from '../data/stays.json?url';
+import staysPayload from '../data/stays.json';
 import { buildStayInventory } from '../data/stayInventory.js';
 
 const fallbackRates = {
@@ -35,9 +35,6 @@ const weatherLabels = {
 
 function apiUrl(path = '') {
   const baseUrl = import.meta.env.VITE_STAY_API_BASE_URL;
-  if (!baseUrl) {
-    return staysUrl;
-  }
 
   return `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
 }
@@ -104,6 +101,14 @@ function getInventory(payload) {
   return buildStayInventory(stays ?? []);
 }
 
+async function loadStayPayload(signal) {
+  if (!import.meta.env.VITE_STAY_API_BASE_URL) {
+    return staysPayload;
+  }
+
+  return fetchJson(apiUrl('stays'), signal);
+}
+
 export const stayApi = createApi({
   reducerPath: 'stayApi',
   baseQuery: fakeBaseQuery(),
@@ -112,7 +117,7 @@ export const stayApi = createApi({
     getProperties: builder.query({
       async queryFn(filters = {}, queryApi) {
         try {
-          const payload = await fetchJson(apiUrl('stays'), queryApi.signal);
+          const payload = await loadStayPayload(queryApi.signal);
           const stays = getInventory(payload);
           return { data: filterStays(stays ?? [], filters) };
         } catch (error) {
@@ -129,7 +134,7 @@ export const stayApi = createApi({
     getProperty: builder.query({
       async queryFn(slug, queryApi) {
         try {
-          const payload = await fetchJson(apiUrl('stays'), queryApi.signal);
+          const payload = await loadStayPayload(queryApi.signal);
           const stays = getInventory(payload);
           const property = stays?.find((stay) => stay.slug === slug);
 
@@ -177,7 +182,7 @@ export const stayApi = createApi({
     }),
     getWeather: builder.query({
       async queryFn(coordinates, queryApi) {
-        if (!coordinates?.lat || !coordinates?.lon) {
+        if (coordinates?.lat == null || coordinates?.lon == null) {
           return {
             error: {
               status: 'CUSTOM_ERROR',

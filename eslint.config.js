@@ -22,6 +22,7 @@ export default [
         fetch: 'readonly',
         Intl: 'readonly',
         localStorage: 'readonly',
+        navigator: 'readonly',
         URLSearchParams: 'readonly',
         window: 'readonly',
       },

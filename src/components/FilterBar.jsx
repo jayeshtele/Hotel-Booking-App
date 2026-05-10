@@ -17,6 +17,8 @@ import {
   setSearchField,
   toggleAmenity,
 } from '../features/search/searchSlice.js';
+import { useGetLiveRatesQuery } from '../services/stayApi.js';
+import { formatCurrency } from '../utils/formatters.js';
 
 const categories = [
   { name: 'All', icon: Sparkles },
@@ -34,6 +36,8 @@ const amenities = ['Pool', 'Wifi', 'Kitchen', 'Breakfast', 'Workspace', 'Parking
 export default function FilterBar() {
   const filters = useSelector((state) => state.search);
   const dispatch = useDispatch();
+  const { data: rates } = useGetLiveRatesQuery();
+  const maxPriceInInr = filters.maxPrice * (rates?.rates?.INR ?? 83.5);
 
   const updateField = (field, value) => {
     dispatch(setSearchField({ field, value }));
@@ -83,7 +87,7 @@ export default function FilterBar() {
       <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr_1fr]">
         <label className="grid gap-2">
           <span className="text-xs font-extrabold uppercase text-ink-500">
-            Max price: ${filters.maxPrice}
+            Max price: {formatCurrency(maxPriceInInr, 'INR')}
           </span>
           <input
             type="range"

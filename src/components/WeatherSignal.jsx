@@ -50,6 +50,8 @@ export default function WeatherSignal({
 
   const heading = coordinates
     ? `${label} right now`
+    : label && !useCurrentLocation
+      ? `${label} weather`
     : locationStatus === 'current'
       ? 'Your current location'
       : 'Current location weather';
@@ -65,7 +67,11 @@ export default function WeatherSignal({
         {heading}
       </p>
       <p className="mt-2 text-2xl font-extrabold">
-        {weather ? `${weather.temperature}C, ${weather.label}` : isFetching ? 'Loading weather' : 'Allow location'}
+        {weather
+          ? `${weather.temperature}C, ${weather.label}`
+          : isFetching || (label && !useCurrentLocation)
+            ? 'Loading weather'
+            : 'Allow location'}
       </p>
       <p className="mt-1 text-xs font-semibold text-white/60">
         {weather

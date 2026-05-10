@@ -2,7 +2,11 @@ import { CalendarDays } from 'lucide-react';
 
 export default function DateInput({ label, value, onChange, min }) {
   const openPicker = (event) => {
-    event.currentTarget.showPicker?.();
+    try {
+      event.currentTarget.showPicker?.();
+    } catch {
+      // Some browsers only allow the picker during direct pointer activation.
+    }
   };
 
   return (
