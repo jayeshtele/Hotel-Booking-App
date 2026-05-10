@@ -86,7 +86,7 @@ export default function Trips() {
                       {booking.guests}
                     </p>
                   </div>
-                  <div className="rounded-[8px] bg-ink-900 p-3 text-white">
+                  <div className="rounded-[8px] bg-black p-3 text-white ring-1 ring-ink-200">
                     <p className="text-xs font-extrabold uppercase text-white/60">Total</p>
                     <p className="mt-1 text-sm font-extrabold">
                       {formatCurrency(booking.total, booking.currency)}

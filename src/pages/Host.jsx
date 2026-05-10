@@ -11,7 +11,7 @@ export default function Host() {
 
   return (
     <div className="section-shell py-10">
-      <section className="grid gap-8 overflow-hidden rounded-[8px] bg-ink-900 p-6 text-white lg:grid-cols-[1fr_420px] lg:p-10">
+      <section className="grid gap-8 overflow-hidden rounded-[8px] bg-black p-6 text-white ring-1 ring-ink-200 lg:grid-cols-[1fr_420px] lg:p-10">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 rounded-[8px] bg-white/10 px-3 py-2 text-sm font-extrabold backdrop-blur">
             <Building2 className="h-4 w-4 text-coral-300" />
@@ -38,7 +38,7 @@ export default function Host() {
           </div>
         </div>
 
-        <div className="rounded-[8px] bg-white p-5 text-ink-900">
+        <div className="rounded-[8px] bg-ink-100 p-5 text-ink-900 ring-1 ring-ink-200">
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-coral-50 text-coral-600">
               <BadgeDollarSign className="h-6 w-6" />
@@ -80,7 +80,7 @@ export default function Host() {
             </label>
           </div>
 
-          <div className="mt-6 rounded-[8px] bg-ink-900 p-5 text-white">
+          <div className="mt-6 rounded-[8px] bg-black p-5 text-white ring-1 ring-ink-200">
             <p className="text-sm font-bold text-white/60">Potential monthly revenue</p>
             <p className="mt-2 text-4xl font-extrabold">${estimate.toLocaleString()}</p>
           </div>
@@ -109,7 +109,7 @@ export default function Host() {
               Better listings convert faster.
             </h2>
           </div>
-          <span className="inline-flex items-center gap-2 rounded-[8px] bg-white px-4 py-3 text-sm font-extrabold text-ink-900 shadow-sm">
+          <span className="inline-flex items-center gap-2 rounded-[8px] bg-ink-100 px-4 py-3 text-sm font-extrabold text-ink-900 shadow-sm ring-1 ring-ink-200">
             <Sparkles className="h-5 w-5 text-coral-500" />
             Photo-first listing design
           </span>

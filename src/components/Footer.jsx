@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-ink-100 bg-white">
+    <footer className="mt-20 border-t border-ink-200 bg-black/95">
       <div className="section-shell grid gap-10 py-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-ink-100 py-4">
+      <div className="border-t border-ink-200 py-4">
         <div className="section-shell flex flex-col gap-2 text-xs font-semibold text-ink-500 sm:flex-row sm:items-center sm:justify-between">
           <span>2026 StayNest. Built with React, Vite, Redux Toolkit, and Tailwind CSS.</span>
           <span className="inline-flex items-center gap-2">

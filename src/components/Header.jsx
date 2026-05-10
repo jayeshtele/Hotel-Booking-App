@@ -22,7 +22,7 @@ function NavItem({ item, onClick }) {
           'inline-flex items-center gap-2 rounded-[8px] px-3 py-2 text-sm font-bold transition',
           isActive
             ? 'bg-ocean-50 text-ocean-700'
-            : 'text-ink-500 hover:bg-white hover:text-ink-900',
+            : 'text-ink-500 hover:bg-ink-200 hover:text-ink-900',
         )
       }
     >
@@ -36,7 +36,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-ink-200 bg-black/90 backdrop-blur">
       <div className="section-shell">
         <div className="flex h-20 items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
@@ -75,7 +75,7 @@ export default function Header() {
       </div>
 
       {isOpen ? (
-        <div className="border-t border-ink-100 bg-white px-4 pb-4 md:hidden">
+        <div className="border-t border-ink-200 bg-black px-4 pb-4 md:hidden">
           <nav className="mx-auto grid max-w-7xl gap-1 pt-3">
             {navItems.map((item) => (
               <NavItem key={item.to} item={item} onClick={() => setIsOpen(false)} />

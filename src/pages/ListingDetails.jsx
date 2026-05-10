@@ -107,17 +107,17 @@ export default function ListingDetails() {
         </Link>
       </div>
 
-      <section className="mt-8 grid gap-3 lg:grid-cols-[1.45fr_.55fr]">
-        <div className="min-h-[320px] overflow-hidden rounded-[8px] bg-ink-100">
+      <section className="mt-8 grid gap-3 lg:grid-cols-[1.18fr_.82fr]">
+        <div className="min-h-[320px] overflow-hidden rounded-[8px] bg-ink-200 lg:min-h-[520px]">
           <img
             src={property.images[0]}
             alt={property.name}
-            className="h-full max-h-[560px] w-full object-cover"
+            className="h-full max-h-[620px] w-full object-cover"
           />
         </div>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
-          {property.images.slice(1, 3).map((image, index) => (
-            <div key={image} className="min-h-[154px] overflow-hidden rounded-[8px] bg-ink-100">
+        <div className="grid grid-cols-2 gap-3">
+          {property.images.slice(1, 5).map((image, index) => (
+            <div key={image} className="min-h-[154px] overflow-hidden rounded-[8px] bg-ink-200">
               <img
                 src={image}
                 alt={`${property.name} ${index + 2}`}
@@ -137,7 +137,7 @@ export default function ListingDetails() {
                   Hosted by {property.host.name}
                 </h2>
                 <p className="mt-1 text-sm font-semibold text-ink-500">
-                  {property.guests} guests · {property.bedrooms} bedrooms · {property.beds} beds ·{' '}
+                  {property.guests} guests - {property.bedrooms} bedrooms - {property.beds} beds -{' '}
                   {property.baths} baths
                 </p>
               </div>
@@ -184,10 +184,10 @@ export default function ListingDetails() {
                   Essentials and comforts for this stay
                 </p>
               </div>
-              <div className="rounded-[8px] bg-ink-900 px-4 py-3 text-white">
+              <div className="rounded-[8px] bg-black px-4 py-3 text-white ring-1 ring-ink-200">
                 <p className="inline-flex items-center gap-2 text-sm font-bold">
                   <ThermometerSun className="h-5 w-5 text-marigold-400" />
-                  {weather ? `${weather.temperature}C · ${weather.label}` : 'Live weather'}
+                  {weather ? `${weather.temperature}C - ${weather.label}` : 'Live weather'}
                 </p>
                 {weather ? (
                   <p className="mt-1 text-xs font-semibold text-white/60">

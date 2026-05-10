@@ -45,6 +45,30 @@ const categoryTiles = [
     image:
       'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=700&q=80',
   },
+  {
+    label: 'Iconic',
+    destination: 'Oia',
+    image:
+      'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=700&q=80',
+  },
+  {
+    label: 'Tea Garden',
+    destination: 'Kyoto',
+    image:
+      'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80',
+  },
+  {
+    label: 'Desert',
+    destination: 'Merzouga',
+    image:
+      'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=700&q=80',
+  },
+  {
+    label: 'Tropical',
+    destination: 'Ubud',
+    image:
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
+  },
 ];
 
 export default function Home() {
@@ -54,15 +78,15 @@ export default function Home() {
   });
   const { data: rates } = useGetLiveRatesQuery();
   const { data: weather } = useGetWeatherQuery({ lat: 15.518, lon: 73.762 });
-  const featured = properties.slice(0, 6);
+  const featured = properties.slice(0, 30);
 
   return (
     <>
       <section
-        className="relative overflow-hidden bg-ink-900"
+        className="relative overflow-hidden bg-black"
         style={{
           backgroundImage:
-            'linear-gradient(90deg, rgba(13,23,38,.88), rgba(13,23,38,.56), rgba(13,23,38,.16)), url(https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=85)',
+            'linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.66), rgba(0,0,0,.2)), url(https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=85)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -89,7 +113,7 @@ export default function Home() {
       </section>
 
       <section className="section-shell -mt-10 relative z-10">
-        <div className="grid gap-4 rounded-[8px] border border-white/70 bg-white p-4 shadow-soft md:grid-cols-3">
+        <div className="grid gap-4 rounded-[8px] border border-ink-200 bg-ink-100/95 p-4 shadow-soft backdrop-blur md:grid-cols-3">
           <div className="flex items-center gap-3 rounded-[8px] bg-ocean-50 p-4">
             <BadgeCheck className="h-8 w-8 text-ocean-700" />
             <div>
@@ -100,8 +124,8 @@ export default function Home() {
           <div className="flex items-center gap-3 rounded-[8px] bg-coral-50 p-4">
             <Globe2 className="h-8 w-8 text-coral-600" />
             <div>
-              <p className="text-2xl font-extrabold text-ink-900">8</p>
-              <p className="text-sm font-bold text-ink-500">Global destinations</p>
+              <p className="text-2xl font-extrabold text-ink-900">32</p>
+              <p className="text-sm font-bold text-ink-500">Expanded stay inventory</p>
             </div>
           </div>
           <div className="flex items-center gap-3 rounded-[8px] bg-marigold-100 p-4">
@@ -148,7 +172,7 @@ export default function Home() {
 
       <section className="section-shell mt-16">
         <div className="grid gap-5 lg:grid-cols-[.8fr_1.2fr]">
-          <div className="rounded-[8px] bg-ink-900 p-6 text-white">
+          <div className="rounded-[8px] bg-black p-6 text-white ring-1 ring-ink-200">
             <p className="eyebrow text-ocean-100">Live travel desk</p>
             <h2 className="mt-2 font-display text-4xl font-bold">Plan with today&apos;s signals</h2>
             <p className="mt-4 text-sm leading-6 text-white/70">
@@ -182,7 +206,7 @@ export default function Home() {
               <Link
                 key={tile.label}
                 to={`/explore?destination=${encodeURIComponent(tile.destination)}`}
-                className="group relative min-h-[220px] overflow-hidden rounded-[8px] bg-ink-900"
+                className="group relative min-h-[220px] overflow-hidden rounded-[8px] bg-black"
               >
                 <img
                   src={tile.image}
@@ -190,7 +214,7 @@ export default function Home() {
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-ink-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                   <p className="inline-flex items-center gap-2 text-sm font-bold">
                     <MapPinned className="h-4 w-4 text-coral-300" />
@@ -211,7 +235,7 @@ export default function Home() {
             ['Save and return', 'Wishlist selections and trip confirmations persist in your browser.'],
             ['Responsive first', 'The interface adapts from mobile search to desktop comparison.'],
           ].map(([title, text]) => (
-            <div key={title} className="rounded-[8px] border border-white bg-white/80 p-5">
+            <div key={title} className="rounded-[8px] border border-ink-200 bg-ink-100/90 p-5">
               <Star className="h-6 w-6 fill-marigold-400 text-marigold-400" />
               <h3 className="mt-4 text-lg font-extrabold text-ink-900">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-ink-500">{text}</p>

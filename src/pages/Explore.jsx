@@ -65,7 +65,7 @@ export default function Explore() {
             <p className="text-xs font-semibold text-ocean-700">Updating results...</p>
           ) : null}
         </div>
-        <span className="inline-flex items-center gap-2 rounded-[8px] bg-white px-3 py-2 text-sm font-bold text-ink-600 shadow-sm">
+        <span className="inline-flex items-center gap-2 rounded-[8px] bg-ink-100 px-3 py-2 text-sm font-bold text-ink-600 shadow-sm ring-1 ring-ink-200">
           <Map className="h-4 w-4 text-coral-500" />
           List view
         </span>

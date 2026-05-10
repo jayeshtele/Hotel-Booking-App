@@ -70,7 +70,7 @@ export default function FilterBar() {
                 'inline-flex min-w-max items-center gap-2 rounded-[8px] border px-4 py-2 text-sm font-bold transition',
                 isActive
                   ? 'border-ocean-600 bg-ocean-600 text-white'
-                  : 'border-ink-100 bg-white text-ink-600 hover:border-ocean-200 hover:bg-ocean-50 hover:text-ocean-700',
+                  : 'border-ink-200 bg-ink-100 text-ink-600 hover:border-ocean-300 hover:bg-ocean-50 hover:text-ocean-700',
               )}
             >
               <Icon className="h-4 w-4" />
@@ -110,7 +110,7 @@ export default function FilterBar() {
           </select>
         </label>
 
-        <label className="flex items-center justify-between gap-3 rounded-[8px] border border-ink-100 px-4 py-3">
+        <label className="flex items-center justify-between gap-3 rounded-[8px] border border-ink-200 bg-ink-50 px-4 py-3">
           <span className="inline-flex items-center gap-2 text-sm font-bold text-ink-700">
             <Home className="h-4 w-4 text-coral-500" />
             Instant book
@@ -137,7 +137,7 @@ export default function FilterBar() {
                 'rounded-[8px] border px-3 py-2 text-xs font-extrabold transition',
                 isActive
                   ? 'border-coral-500 bg-coral-50 text-coral-700'
-                  : 'border-ink-100 bg-white text-ink-500 hover:border-coral-100 hover:text-coral-600',
+                  : 'border-ink-200 bg-ink-100 text-ink-500 hover:border-coral-100 hover:text-coral-600',
               )}
             >
               {amenity}
