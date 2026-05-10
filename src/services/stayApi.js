@@ -1,5 +1,6 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import staysUrl from '../data/stays.json?url';
+import { buildStayInventory } from '../data/stayInventory.js';
 
 const fallbackRates = {
   base: 'USD',
@@ -98,6 +99,11 @@ function filterStays(stays, filters = {}) {
   });
 }
 
+function getInventory(payload) {
+  const stays = Array.isArray(payload) ? payload : payload.stays;
+  return buildStayInventory(stays ?? []);
+}
+
 export const stayApi = createApi({
   reducerPath: 'stayApi',
   baseQuery: fakeBaseQuery(),
@@ -107,7 +113,7 @@ export const stayApi = createApi({
       async queryFn(filters = {}, queryApi) {
         try {
           const payload = await fetchJson(apiUrl('stays'), queryApi.signal);
-          const stays = Array.isArray(payload) ? payload : payload.stays;
+          const stays = getInventory(payload);
           return { data: filterStays(stays ?? [], filters) };
         } catch (error) {
           return {
@@ -124,7 +130,7 @@ export const stayApi = createApi({
       async queryFn(slug, queryApi) {
         try {
           const payload = await fetchJson(apiUrl('stays'), queryApi.signal);
-          const stays = Array.isArray(payload) ? payload : payload.stays;
+          const stays = getInventory(payload);
           const property = stays?.find((stay) => stay.slug === slug);
 
           if (!property) {
