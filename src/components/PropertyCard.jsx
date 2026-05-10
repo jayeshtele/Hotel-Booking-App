@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleWishlist } from '../features/wishlist/wishlistSlice.js';
 import { useGetLiveRatesQuery } from '../services/stayApi.js';
 import { formatCurrency, formatRating } from '../utils/formatters.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 export default function PropertyCard({ property }) {
   const wishlistIds = useSelector((state) => state.wishlist.ids);
@@ -36,7 +37,11 @@ export default function PropertyCard({ property }) {
   return (
     <article className="surface group overflow-hidden">
       <div className="relative aspect-[4/3] overflow-hidden bg-ink-200">
-        <Link to={`/stays/${property.slug}`} aria-label={`View ${property.name}`}>
+        <Link
+          to={`/stays/${property.slug}`}
+          aria-label={`View ${property.name}`}
+          onClick={scrollPageTop}
+        >
           <img
             src={images[imageIndex]}
             alt={property.name}
@@ -107,6 +112,7 @@ export default function PropertyCard({ property }) {
           <div>
             <Link
               to={`/stays/${property.slug}`}
+              onClick={scrollPageTop}
               className="line-clamp-1 text-lg font-extrabold text-ink-900 hover:text-ocean-700"
             >
               {property.name}
@@ -145,7 +151,11 @@ export default function PropertyCard({ property }) {
             </p>
             <p className="text-xs font-semibold text-ink-500">{property.reviews} guest reviews</p>
           </div>
-          <Link to={`/stays/${property.slug}`} className="secondary-button px-4 py-2">
+          <Link
+            to={`/stays/${property.slug}`}
+            className="secondary-button px-4 py-2"
+            onClick={scrollPageTop}
+          >
             Details
           </Link>
         </div>

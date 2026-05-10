@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import DateInput from './DateInput.jsx';
 import { setSearchField } from '../features/search/searchSlice.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 export default function SearchBar({ compact = false }) {
   const filters = useSelector((state) => state.search);
@@ -21,7 +22,7 @@ export default function SearchBar({ compact = false }) {
       params.set('destination', filters.destination);
     }
     navigate(`/explore${params.toString() ? `?${params.toString()}` : ''}`);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    scrollPageTop();
   };
 
   return (

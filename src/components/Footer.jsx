@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LogoMark from './LogoMark.jsx';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 export default function Footer() {
   return (
@@ -55,6 +56,7 @@ export default function Footer() {
                 <Link
                   key={label}
                   to={label === 'Trips' ? '/trips' : label === 'Wishlist' ? '/wishlist' : '/explore'}
+                  onClick={scrollPageTop}
                   className="flex items-center gap-3 rounded-[8px] border border-ink-200 bg-ink-100/80 p-4 text-sm font-extrabold text-ink-800 transition hover:border-ocean-300 hover:text-ocean-700"
                 >
                   <Icon className="h-5 w-5 text-coral-500" />

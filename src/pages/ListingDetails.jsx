@@ -22,6 +22,7 @@ import PropertyCard from '../components/PropertyCard.jsx';
 import WeatherSignal from '../components/WeatherSignal.jsx';
 import { useGetPropertiesQuery, useGetPropertyQuery } from '../services/stayApi.js';
 import { formatRating } from '../utils/formatters.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 function AmenityIcon({ amenity }) {
   const lower = amenity.toLowerCase();
@@ -97,7 +98,11 @@ export default function ListingDetails() {
             ) : null}
           </div>
         </div>
-        <Link to="/explore" className="secondary-button justify-self-start lg:justify-self-end">
+        <Link
+          to="/explore"
+          className="secondary-button justify-self-start lg:justify-self-end"
+          onClick={scrollPageTop}
+        >
           Back to results
         </Link>
       </div>

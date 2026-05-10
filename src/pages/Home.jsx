@@ -15,6 +15,7 @@ import PropertyCard from '../components/PropertyCard.jsx';
 import SearchBar from '../components/SearchBar.jsx';
 import WeatherSignal from '../components/WeatherSignal.jsx';
 import { useGetLiveRatesQuery, useGetPropertiesQuery } from '../services/stayApi.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 const categoryTiles = [
   {
@@ -141,7 +142,11 @@ export default function Home() {
               Guest-loved stays
             </h2>
           </div>
-          <Link to="/explore" className="secondary-button self-start sm:self-auto">
+          <Link
+            to="/explore"
+            className="secondary-button self-start sm:self-auto"
+            onClick={scrollPageTop}
+          >
             Explore all
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -193,6 +198,7 @@ export default function Home() {
               <Link
                 key={tile.label}
                 to={`/explore?destination=${encodeURIComponent(tile.destination)}`}
+                onClick={scrollPageTop}
                 className="group relative min-h-[220px] overflow-hidden rounded-[8px] bg-black"
               >
                 <img

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import EmptyState from '../components/EmptyState.jsx';
 import { removeBooking } from '../features/booking/bookingSlice.js';
 import { formatCurrency, toReadableDate } from '../utils/formatters.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 export default function Trips() {
   const bookings = useSelector((state) => state.bookings.items);
@@ -21,7 +22,7 @@ export default function Trips() {
             Reservations made in the demo are stored in Redux and persisted locally.
           </p>
         </div>
-        <Link to="/explore" className="primary-button self-start">
+        <Link to="/explore" className="primary-button self-start" onClick={scrollPageTop}>
           Book another stay
         </Link>
       </div>
@@ -47,6 +48,7 @@ export default function Trips() {
                   <div>
                     <Link
                       to={`/stays/${booking.slug}`}
+                      onClick={scrollPageTop}
                       className="text-2xl font-extrabold text-ink-900 hover:text-ocean-700"
                     >
                       {booking.propertyName}

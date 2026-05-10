@@ -3,6 +3,7 @@ import { Building2, CalendarDays, Heart, Menu, Search, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import LogoMark from './LogoMark.jsx';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 const navItems = [
   { to: '/explore', label: 'Explore', icon: Search },
@@ -10,10 +11,6 @@ const navItems = [
   { to: '/trips', label: 'Trips', icon: CalendarDays },
   { to: '/host', label: 'Host', icon: Building2 },
 ];
-
-function scrollPageTop() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-}
 
 function NavItem({ item, onClick }) {
   const Icon = item.icon;

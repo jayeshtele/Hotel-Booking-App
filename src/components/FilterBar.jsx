@@ -19,6 +19,7 @@ import {
 } from '../features/search/searchSlice.js';
 import { useGetLiveRatesQuery } from '../services/stayApi.js';
 import { formatCurrency } from '../utils/formatters.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 const categories = [
   { name: 'All', icon: Sparkles },
@@ -55,7 +56,14 @@ export default function FilterBar() {
             <p className="text-xs font-semibold text-ink-500">Match budget, style, and comfort</p>
           </div>
         </div>
-        <button type="button" className="secondary-button py-2" onClick={() => dispatch(resetFilters())}>
+        <button
+          type="button"
+          className="secondary-button py-2"
+          onClick={() => {
+            dispatch(resetFilters());
+            scrollPageTop();
+          }}
+        >
           Reset
         </button>
       </div>
@@ -69,7 +77,10 @@ export default function FilterBar() {
             <button
               type="button"
               key={category.name}
-              onClick={() => updateField('category', category.name)}
+              onClick={() => {
+                updateField('category', category.name);
+                scrollPageTop();
+              }}
               className={clsx(
                 'inline-flex min-w-max items-center gap-2 rounded-[8px] border px-4 py-2 text-sm font-bold transition',
                 isActive
@@ -136,7 +147,10 @@ export default function FilterBar() {
             <button
               type="button"
               key={amenity}
-              onClick={() => dispatch(toggleAmenity(amenity))}
+              onClick={() => {
+                dispatch(toggleAmenity(amenity));
+                scrollPageTop();
+              }}
               className={clsx(
                 'rounded-[8px] border px-3 py-2 text-xs font-extrabold transition',
                 isActive

@@ -7,6 +7,7 @@ import { addBooking } from '../features/booking/bookingSlice.js';
 import DateInput from './DateInput.jsx';
 import { useGetLiveRatesQuery } from '../services/stayApi.js';
 import { formatCurrency, getNightCount } from '../utils/formatters.js';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 const currencies = ['INR', 'USD', 'EUR', 'GBP'];
 
@@ -81,6 +82,7 @@ export default function BookingPanel({ property }) {
       }),
     );
     navigate('/trips');
+    scrollPageTop();
   };
 
   return (

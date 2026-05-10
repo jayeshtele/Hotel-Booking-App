@@ -1,5 +1,6 @@
 import { SearchX } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { scrollPageTop } from '../utils/scrollPageTop.js';
 
 export default function EmptyState({
   title = 'No stays found',
@@ -14,7 +15,7 @@ export default function EmptyState({
       </span>
       <h2 className="mt-5 text-2xl font-extrabold text-ink-900">{title}</h2>
       <p className="mt-2 text-sm leading-6 text-ink-500">{message}</p>
-      <Link className="primary-button mt-6" to={actionTo}>
+      <Link className="primary-button mt-6" to={actionTo} onClick={scrollPageTop}>
         {actionLabel}
       </Link>
     </div>
