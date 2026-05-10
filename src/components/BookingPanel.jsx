@@ -7,7 +7,7 @@ import { addBooking } from '../features/booking/bookingSlice.js';
 import { useGetLiveRatesQuery } from '../services/stayApi.js';
 import { formatCurrency, getNightCount } from '../utils/formatters.js';
 
-const currencies = ['USD', 'INR', 'EUR', 'GBP'];
+const currencies = ['INR', 'USD', 'EUR', 'GBP'];
 
 function todayIso() {
   return format(new Date(), 'yyyy-MM-dd');
@@ -22,7 +22,7 @@ export default function BookingPanel({ property }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { data: liveRates } = useGetLiveRatesQuery();
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('INR');
   const [error, setError] = useState('');
 
   const initialCheckIn = filters.checkIn || todayIso();
