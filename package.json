@@ -1,0 +1,43 @@
+{
+  "name": "staynest-hotel-booking-app",
+  "version": "0.1.0",
+  "description": "A responsive Airbnb-inspired hotel booking app built with React, Vite, Tailwind CSS, React Router, and Redux Toolkit.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayeshtele/Hotel-Booking-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayeshtele/Hotel-Booking-App/issues"
+  },
+  "homepage": "https://github.com/jayeshtele/Hotel-Booking-App#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^10.3.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^3.4.17",
+    "vite": "^8.0.11"
+  }
+}
